@@ -1,0 +1,53 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sidebar-container {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+}
+
+.sidebar-drawer {
+    background-color: rgb(120, 126, 194);
+    transition: all .3s;
+}
+
+.sidebar-open {
+    width: 250px;
+}
+
+.sidebar-close {
+    width: 65px;
+}
+
+.sidebar-content {
+    background-color: cadetblue;
+    flex: 1;
+}
+
+@media screen and (max-width: 680px) {
+    
+    .sidebar-container {
+        position: relative;
+    }
+    .sidebar-drawer {
+        position: absolute;
+        /* transform: translateX(-100%); */
+        height: 100%;
+        background-color: aliceblue;
+        transition: all .3s;
+        overflow: hidden;
+    }
+
+    .sidebar-open {
+        left: 0px;
+        width: 250px;
+        transition: all .3s;
+    }
+    .sidebar-close {
+        left: -250px;
+    }
+}

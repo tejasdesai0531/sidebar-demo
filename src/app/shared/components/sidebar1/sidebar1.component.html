@@ -1,0 +1,33 @@
+<ul class="todos" id="todos">
+    <li class="todo">Task 1</li>
+    <li class="todo active">Task 24/22/20</li>
+    <li>
+      <div class="toggler">Task 3</div>
+      <ul class="toggler-target" [ngClass]="{'active': isActive}">
+        <div class="growHeight">
+          <li class="todo">Task 1 level 1</li>
+          <li class="todo">Task 2 level 2</li>
+          <li>
+              <div class="toggler">Task 3 - 1</div>
+              <ul class="toggler-target">
+                  <div class="growHeight">
+                      <li class="todo">Task 1 level 2</li>
+                      <li class="todo">Task 2 level 2</li>
+                      <li>
+                          <div class="toggler">Task 3 - 1 - 1</div>
+                          <ul class="toggler-target">
+                              <div class="growHeight">
+                                  <li class="todo">Task 1 level 3</li>
+                                  <li class="todo">Task 2 level 3</li>
+                                  <li class="todo">Task 3 level 3</li>
+                              </div>
+                          </ul>
+                      </li>
+                  </div>
+              </ul>
+          </li>
+        </div>
+      </ul>
+    </li>
+    <li class="todo">Task 4</li>
+  </ul>

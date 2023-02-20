@@ -1,0 +1,39 @@
+<div style="overflow-y: scroll; height: 100%;">
+    <mat-nav-list class="side-navnar">
+        <ng-container *ngFor="let menu of menuList; index as i;">
+            <ng-container [ngTemplateOutlet]="menu.children ?  childMenu : parentMenu"
+                [ngTemplateOutletContext]="{menu:menu}">
+            </ng-container>
+        </ng-container>
+    </mat-nav-list>
+    
+    <ng-template #parentMenu let-menu="menu">
+        <!-- <mat-list-item class="menu hoverEffect" [routerLink]="menu.routerLink" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:
+            true}">
+            <mat-icon>{{menu.icon}}</mat-icon> {{menu.text}}
+        </mat-list-item> -->
+        <mat-list-item class="menu hoverEffect">
+            <mat-icon>{{menu.icon}}</mat-icon> {{menu.text}}
+        </mat-list-item>
+    </ng-template>
+    
+    <ng-template #childMenu let-menu="menu">
+        <mat-expansion-panel #panel [expanded]="menu.isExpanded" [ngClass]="{'vertical-spacing': menu.isRoot}" (opened)="openGroup('open')" (closed)="closeGroup('close')" [class.mat-elevation-z0]="true">
+            <mat-expansion-panel-header class="nested-menu" [ngClass]="{'hide-arrow': !isSideBarOpen}">
+                <mat-icon mat-list-icon>{{menu.icon}}</mat-icon><div>{{menu.text}}</div>
+            </mat-expansion-panel-header>
+            
+            <div *ngFor="let submenu of menu.children" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:
+                true}">
+                <div class="submenu" *ngIf="!submenu.children">
+                    <a class="rootMenu" [routerLink]="submenu.routerLink">
+                        <mat-icon>{{submenu.icon}}</mat-icon> <div style="flex: 1;">{{submenu.text}}</div>
+                    </a>
+                </div>
+                <ng-container *ngIf="submenu.children" [ngTemplateOutlet]="submenu.children ?  childMenu : parentMenu"
+                    [ngTemplateOutletContext]="{menu:submenu}">
+                </ng-container>
+            </div>
+        </mat-expansion-panel>
+    </ng-template>
+</div>

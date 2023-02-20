@@ -1,0 +1,15 @@
+<app-header (toggleSideBarForMe)="sideBarToggler()">
+  <!-- <app-footer></app-footer> -->
+</app-header>
+
+<div class="sidebar-container">
+
+  <div class="sidebar-drawer" [ngClass]="sideBarOpen ? 'sidebar-open' : 'sidebar-close'">
+    <app-sidebar [sideBarOpen]="sideBarOpen" (expandEvent)="openSideBar()"></app-sidebar>
+  </div>
+
+  <div class="sidebar-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

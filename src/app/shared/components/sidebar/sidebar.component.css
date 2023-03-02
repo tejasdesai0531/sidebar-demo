@@ -1,6 +1,6 @@
 :host {
-    margin-left: 10px;
-    margin-right: 10px;
+    /* margin-left: 10px;
+    margin-right: 10px; */
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -28,6 +28,10 @@ mat-list-item {
 ::ng-deep .mat-content {
     column-gap: 10px;
     align-items: center;
+}
+
+::ng-deep .mat-expansion-panel {
+    border-radius: 0 !important;
 }
 
 ::ng-deep .mat-expansion-panel-header {
@@ -72,7 +76,7 @@ mat-list-item {
     display: flex;
     align-items: center;
     column-gap: 10px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     overflow: hidden;
 } 
 
@@ -89,23 +93,23 @@ mat-list-item {
 }
 
 .submenu:hover {
-    background-color: red;
+    background-color: rgb(237, 230, 230);
 }
 
 .hoverEffect:hover {
-    background-color: red;
+    background-color: rgb(237, 230, 230);
 }
 
 ::ng-deep .mat-expansion-panel-header:hover {
-    background-color: red !important;
+    background-color: rgb(237, 230, 230) !important;
 }
 
 
 /*  =======   */
 
 ::ng-deep .mat-list-item {
-    margin: 10px 0;
-    border-radius: 5px;
+    /* margin: 10px 0; */
+    /* border-radius: 5px; */
 }
 ::ng-deep .mat-nav-list {
     margin: 0 10px !important;
@@ -113,6 +117,25 @@ mat-list-item {
 }
 
 .vertical-spacing {
-    margin: 10px 0 !important;
-    border-radius: 5px !important;
+    /* margin: 10px 0 !important; */
+    /* border-radius: 5px !important; */
+}
+
+
+.icons-collapse {
+    font-size: 14px;
+    transition: all 0.15s ease-out;
+}
+.icons-open {
+    font-size: 24px;
+    transition: all 0.15s ease-out;
+}
+
+.item-height-collapse {
+    height: 24px !important;
+    transition: all 0.15s ease-out;
+}
+.item-height-open {
+    height: 48px !important;
+    transition: all 0.15s ease-out;
 }

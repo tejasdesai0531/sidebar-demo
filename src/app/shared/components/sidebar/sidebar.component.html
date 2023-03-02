@@ -12,22 +12,22 @@
             true}">
             <mat-icon>{{menu.icon}}</mat-icon> {{menu.text}}
         </mat-list-item> -->
-        <mat-list-item class="menu hoverEffect">
-            <mat-icon>{{menu.icon}}</mat-icon> {{menu.text}}
+        <mat-list-item class="menu hoverEffect" [ngClass]="!isSideBarOpen ? 'item-height-collapse' : 'item-height-open'">
+            <mat-icon [ngClass]="!isSideBarOpen ? 'icons-collapse' : 'icons-open'">{{menu.icon}}</mat-icon> <span *ngIf="isSideBarOpen">{{menu.text}}</span>
         </mat-list-item>
     </ng-template>
     
     <ng-template #childMenu let-menu="menu">
         <mat-expansion-panel #panel [expanded]="menu.isExpanded" [ngClass]="{'vertical-spacing': menu.isRoot}" (opened)="openGroup('open')" (closed)="closeGroup('close')" [class.mat-elevation-z0]="true">
-            <mat-expansion-panel-header class="nested-menu" [ngClass]="{'hide-arrow': !isSideBarOpen}">
-                <mat-icon mat-list-icon>{{menu.icon}}</mat-icon><div>{{menu.text}}</div>
+            <mat-expansion-panel-header class="nested-menu" [ngClass]="!isSideBarOpen ? 'item-height-collapse hide-arrow' : 'item-height-open'">
+                <mat-icon [ngClass]="!isSideBarOpen ? 'icons-collapse' : 'icons-open'" mat-list-icon>{{menu.icon}}</mat-icon><div><span *ngIf="isSideBarOpen">{{menu.text}}</span></div>
             </mat-expansion-panel-header>
             
             <div *ngFor="let submenu of menu.children" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:
                 true}">
                 <div class="submenu" *ngIf="!submenu.children">
                     <a class="rootMenu" [routerLink]="submenu.routerLink">
-                        <mat-icon>{{submenu.icon}}</mat-icon> <div style="flex: 1;">{{submenu.text}}</div>
+                        <mat-icon [ngClass]="!isSideBarOpen ? 'icons-collapse' : 'icons-open'">{{submenu.icon}}</mat-icon> <div style="flex: 1;">{{submenu.text}}</div>
                     </a>
                 </div>
                 <ng-container *ngIf="submenu.children" [ngTemplateOutlet]="submenu.children ?  childMenu : parentMenu"

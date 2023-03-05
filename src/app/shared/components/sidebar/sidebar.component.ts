@@ -17,9 +17,13 @@ export class SidebarComponent implements OnInit {
 
         if (!this.isSideBarOpen) {
             this.pannels?.toArray().forEach(panel => panel.close())
+            this.getRoot(this.menuList, window.location.pathname, true)
+        } else {
+            setTimeout(() => {
+                this.getRoot(this.menuList, window.location.pathname)
+            }, 130);
         }
-
-        this.getRoot(this.menuList, window.location.pathname)
+        
     }
     @Output() expandEvent = new EventEmitter<string>();
 
@@ -33,7 +37,7 @@ export class SidebarComponent implements OnInit {
     }
 
 
-    getRoot(menuL: any, routerLink: string): boolean {
+    getRoot(menuL: any, routerLink: string, hideExpand = false): boolean {
 
         let isExpanded = false
 
@@ -47,12 +51,18 @@ export class SidebarComponent implements OnInit {
 
             
             if (menuL[i].routerLink === routerLink) {
-                menuL[i].isExpanded = true
+                if(hideExpand)
+                    menuL[i].isExpanded = false
+                else
+                    menuL[i].isExpanded = true
                 return true
             }
 
             if (isExpanded) {
-                menuL[i].isExpanded = true
+                if(hideExpand)
+                    menuL[i].isExpanded = false
+                else
+                    menuL[i].isExpanded = true
                 return true
             }
 

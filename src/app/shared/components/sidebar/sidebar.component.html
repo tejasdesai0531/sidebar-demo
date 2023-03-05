@@ -12,9 +12,13 @@
             true}">
             <mat-icon>{{menu.icon}}</mat-icon> {{menu.text}}
         </mat-list-item> -->
-        <mat-list-item class="menu hoverEffect" [ngClass]="!isSideBarOpen ? 'item-height-collapse' : 'item-height-open'">
-            <mat-icon [ngClass]="!isSideBarOpen ? 'icons-collapse' : 'icons-open'">{{menu.icon}}</mat-icon> <span *ngIf="isSideBarOpen">{{menu.text}}</span>
-        </mat-list-item>
+        <a [routerLink]="menu.routerLink">
+            <mat-list-item 
+                class="menu hoverEffect" 
+                [ngClass]="{'item-height-collapse' : !isSideBarOpen, 'item-height-open': isSideBarOpen, 'active': isRouteActive(menu.routerLink)}">
+                <mat-icon [ngClass]="!isSideBarOpen ? 'icons-collapse' : 'icons-open'">{{menu.icon}}</mat-icon> <span *ngIf="isSideBarOpen">{{menu.text}}</span>
+            </mat-list-item>
+        </a>
     </ng-template>
     
     <ng-template #childMenu let-menu="menu">
@@ -25,8 +29,8 @@
             
             <div *ngFor="let submenu of menu.children" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:
                 true}">
-                <div class="submenu" *ngIf="!submenu.children">
-                    <a class="rootMenu" [routerLink]="submenu.routerLink">
+                <div class="submenu" *ngIf="!submenu.children" [ngClass]="{'active': isRouteActive(submenu.routerLink)}">
+                    <a [routerLink]="submenu.routerLink" class="rootMenu">
                         <mat-icon [ngClass]="!isSideBarOpen ? 'icons-collapse' : 'icons-open'">{{submenu.icon}}</mat-icon> <div style="flex: 1;">{{submenu.text}}</div>
                     </a>
                 </div>
